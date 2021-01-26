@@ -1,1 +1,33 @@
-<h1>Users#new</h1>
+
+{% extends "_layout.html" %}
+{% block content %}
+
+<div class="container">
+<h1>Users#Sign Up</h1>
+
+<form action="{{url_for('users.create')}}" method = "POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label>Username</label>
+    <input type="text" name="username"/>
+    <label>Email</label>
+    <input type="email" name="email"/>
+    <label>Password</label>
+    <input type="password" name="password"/>
+    <input type="submit"/>
+    <br>
+
+</form>
+
+</div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% endblock %}
